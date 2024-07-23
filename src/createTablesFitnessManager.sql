@@ -1,0 +1,32 @@
+CREATE DATABASE FITNESSMANAGER;
+CREATE TABLE Exercise (
+    eID INT AUTO_INCREMENT PRIMARY KEY,
+    group VARCHAR(50) NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    description TEXT
+);
+CREATE TABLE User (
+    uID INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    age INT NOT NULL,
+    gender VARCHAR(10),
+    username VARCHAR(50) UNIQUE NOT NULL,
+    password VARCHAR(50) NOT NULL,
+    weight FLOAT,
+    height FLOAT
+);
+CREATE TABLE Trainer (
+    tID INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    specialty VARCHAR(100),
+    experience INT
+);
+CREATE TABLE Workout (
+    wID INT AUTO_INCREMENT PRIMARY KEY,
+    uID INT NOT NULL,
+    tID INT,
+    date DATE NOT NULL,
+    eIDs TEXT NOT NULL,
+    FOREIGN KEY (uID) REFERENCES User(uID),
+    FOREIGN KEY (tID) REFERENCES Trainer(tID)
+);
